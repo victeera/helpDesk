@@ -1,0 +1,51 @@
+git init //inicia repositorio local
+
+git --global user.name "Victor Alexandre" //define o nome do editor
+
+git --global user.email "alexanvictor@gmail.com" //define email do editor
+
+git status //mostra arquivos que foram editados, criados ou excluidos
+
+git diff // semelhante ao git status porem com um detalhamento maior em relação a mudanças dentro dos arquivos.
+
+git diff --name-only //mostra a lista de arquivos editados;
+
+dit diff (nome do arquivo) //mostra o detalhado somente do arquivo especificado
+
+git checkout HEAD -- (nome) // retorna você para uma outra versão (serve para BRANCH, COMMIT OU ARQUIVOS)
+
+git add -A //adiciona arquivos ao projeto
+
+git commit -m "faz um comentario referente a alteração"
+
+git branch //lista os branch que existem no projeto
+
+git branch (um nome a escolha do editor) //adiciona um branch ao projeto
+
+git chekout (nome do branhc) //seleciona qual branch serão feitas alterações
+
+git reset --(tipo) "key do commit" //reseta o branch até o commit que foi passado a key{
+
+tipos:  - soft = volta para determinado commit dependendo do qual for informado no reset. As edições que foram revertidas ficaram disponiveis para alteração.
+	- mixed = semelhante ao soft porem para visualizar os arquivos teremos que adicionar novamente ao projeto por meio do comando git add -A.
+	- hard = basicamente ele vai ignorar as mudanças que foram feitas apos o commit que foi fornecido no reset   }
+ 
+git remote add origin "caminho do repositorio remoto" //conecta com repositorio remoto
+
+git remote //mostra que existe um repositorio remoto
+
+git remote -v //semelhante ao git remote porem com maiores detalhes
+
+git push -u (nome do repositorio) (nome do branch)//
+
+git push (nome do repositorio) (nome do branch) //envia os arquivos do local para o remoto
+
+git push (nome do repositorio) :(nome do branch) //exclui branch do repositorio remoto
+
+git branch -D //exclui branch do repositorio local
+
+git revert --no-edit (key do commit) //revert alterações feitas em arquivos mas deixa commit disponivel para enventuais ajustes.
+
+git pull (nome do repositorio) (nome do branch)// tras informações do repositorio remoto para o repositorio local
+
+git clone (link do repositorio github)// cria uma copia do repositorio para o seu local
