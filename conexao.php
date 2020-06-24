@@ -1,7 +1,6 @@
 <?php
 
 $dsn = "mysql:dbname = db_helpdesk;host=localhost";
-$dbuser = "victeera";
+$dbuser = "db_helpdesk";
 $dbpass = "victinhow0393";
-
 ?>
