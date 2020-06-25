@@ -25,13 +25,14 @@ if(isset($_POST['email']) && empty($_POST['email']) == false) {
     }
 }
 ?>
-
+<a href="login.php">Voltar</a>
 <form method="POST">
+    <br>
     E-mail:<br>
     <input type="text" name="email"><br><br>
     Senha:<br>
     <input type="password" name="senha"><br><br>
     Confirmação da senha:<br>
     <input type="password" name="c_senha"><br><br>
-    <input type="submit" value="Cadastrar">
+    <input type="submit" value="Cadastrar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </form>
