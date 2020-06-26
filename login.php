@@ -13,7 +13,7 @@ if(isset($_POST['email']) && empty($_POST['email']) == false){
             $_SESSION['id'] = $dado['id_usuario'];
             echo $dado['nome'];
             if ($dado['tipo_usuario'] == 1) {
-                header("Location: painel.php");
+                header("Location: painel_chamado.php");
             }
             if ($dado['tipo_usuario'] == 3){
                 header("Location: index.php");

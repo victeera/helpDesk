@@ -5,10 +5,10 @@ session_start();
 
 ?>
 
-
+<h3>Meus chamados</h3>
 <table border="0" width="100%">
     <tr>
-        <th>Seqêncial</th>
+        <th>Sequêncial</th>
         <th>Solicitante</th>
         <th>Setor</th>
         <th>Prioridade</th>
@@ -19,7 +19,7 @@ session_start();
 
     </tr>
     <?php
-    $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.setor, chamado.prioridade, chamado.descricao, chamado.status, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as responsavel FROM chamado INNER JOIN usuario ON id_usuario = solicitante WHERE solicitante='$_SESSION[id]'");
+    $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.setor, chamado.prioridade, chamado.descricao, chamado.status, chamado.responsavel, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante WHERE solicitante='$_SESSION[id]'");
 
     if($sql->rowCount() > 0){
         foreach($sql->fetchAll() as $chamado){
@@ -30,10 +30,11 @@ session_start();
             echo '<th>'.$chamado['prioridade'].'</th>';
             echo '<th>'.$chamado['descricao'].'</th>';
             echo '<th>'.$chamado['status'].'</th>';
-            echo '<th>'.$chamado['responsavel'].'</th>';
-            echo '<th> </th>';
-
-            echo '</tr>';
+            echo '<th>'.$chamado['tecnico'].'</th>';
+            if($chamado['responsavel'] <= 0) {
+                echo '<td><a href= "editar.php?id=' . $chamado['id_chamado'] . '">Editar</a></td>';
+            }
+                echo '</tr>';
         }
 
     }
