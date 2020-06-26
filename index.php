@@ -1,7 +1,8 @@
 <?php
-require 'conexao.php';
 
-session_start();
+    session_start();
+
+require 'conexao.php';
 
 ?>
 
@@ -19,8 +20,9 @@ session_start();
 
     </tr>
     <?php
+    if(isset ($_SESSION['id']) && empty($_SESSION['id']) == false) {
     $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.setor, chamado.prioridade, chamado.descricao, chamado.status, chamado.responsavel, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante WHERE solicitante='$_SESSION[id]'");
-
+echo $_SESSION['nome'];
     if($sql->rowCount() > 0){
         foreach($sql->fetchAll() as $chamado){
             echo '<tr>';
@@ -34,9 +36,16 @@ session_start();
             if($chamado['responsavel'] <= 0) {
                 echo '<td><a href= "editar.php?id=' . $chamado['id_chamado'] . '">Editar</a></td>';
             }
+            if($chamado['status'] == "finalizado") {
+                echo '<td><a href= "visualizar.php?id=' . $chamado['id_chamado'] . '">Visualizar</a></td>';
+            }
                 echo '</tr>';
         }
 
+    }
+    }else{
+        session_destroy();
+        header("Location: login.php");
     }
     ?>
 

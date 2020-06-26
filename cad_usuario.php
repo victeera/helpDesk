@@ -1,5 +1,6 @@
 <?php
 require 'conexao.php';
+
 if(isset($_POST['nome']) && empty($_POST['nome']) == false) {
 if(isset($_POST['email']) && empty($_POST['email']) == false) {
     if (isset($_POST['senha']) && empty($_POST['senha']) == false) {

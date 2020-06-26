@@ -1,7 +1,9 @@
 <?php
+session_start();
+
 require 'conexao.php';
 
-session_start();
+
 
 ?>
 
@@ -29,7 +31,7 @@ session_start();
             echo '<th>'.$chamado['prioridade'].'</th>';
             echo '<th>'.$chamado['descricao'].'</th>';
             echo '<th>'.$chamado['status'].'</th>';
-            echo '<th><a href= "pegar.php?id=' . $chamado['id_chamado'] . '">Finalizar</a></th>';
+            echo '<th><a href= "pegar.php?id=' . base64_encode($chamado['id_chamado']) . '">Finalizar</a></th>';
 
             echo '</tr>';
         }
@@ -53,7 +55,7 @@ session_start();
     </tr>
     <?php
     $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.setor, chamado.prioridade, chamado.descricao, chamado.status, chamado.responsavel, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante WHERE chamado.status = 'em aberto'");
-
+    echo $_SESSION['nome'];
     if($sql->rowCount() > 0){
         foreach($sql->fetchAll() as $chamado){
             echo '<tr>';
@@ -64,12 +66,13 @@ session_start();
             echo '<th>'.$chamado['descricao'].'</th>';
             echo '<th>'.$chamado['status'].'</th>';
             if($chamado['responsavel'] <= 0)
-                echo '<th><a href= "pegar.php?id=' . $_SESSION['id'] . '">Pegar</a></th>';
+                echo '<th><a href= "pegar.php?id=' . base64_encode($chamado['id_chamado']) . '">Pegar</a></th>';
 
             echo '</tr>';
         }
 
     }
+
     ?>
 
 </table>
