@@ -8,12 +8,14 @@ if(isset($_POST['email']) && empty($_POST['email']) == false) {
         $email = addslashes($_POST['email']);
         $senha = md5(addslashes($_POST['senha']));
         $c_senha = md5(addslashes($_POST['c_senha']));
+        $tipo_usuario = addslashes($_POST['tipo_usuario']);
+        $setor_usuario = addslashes($_POST['setor_usuario']);
 
         $select = $pdo->query("SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'");
 
         if($select->rowCount() == false){
             if($senha == $c_senha) {
-                $pdo->query("INSERT INTO usuario (nome, email, senha) VALUES ('$nome', '$email', '$senha') ");
+                $pdo->query("INSERT INTO usuario (nome, email, senha, tipo_usuario, setor_usuario) VALUES ('$nome', '$email', '$senha', '$tipo_usuario', '$setor_usuario') ");
                 header("Location: login.php");
             }else{
                 echo "As senhas são diferentes<br>";
@@ -45,6 +47,23 @@ if(isset($_POST['email']) && empty($_POST['email']) == false) {
         <option value="1">Administrador</option>
         <option value="2">Técnico</option>
         <option value="3">Padrão</option>
+    </select><br><br>
+    Setor:<br>
+    <select name="setor_usuario">
+        <option> </option>
+        <option value="Ambiental">Ambiental</option>
+        <option value="Comercial">Comercial</option>
+        <option value="Compras">Compras</option>
+        <option value="Contabilidade">Contabilidade</option>
+        <option value="Diretoria">Diretoria</option>
+        <option value="Estoque">Estoque</option>
+        <option value="Financeiro">Financeiro</option>
+        <option value="Fiscal">Fiscal</option>
+        <option value="Rh">RH</option>
+        <option value="T.I">T.I</option>
+
+
+
     </select><br><br>
     <input type="submit" value="Cadastrar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </form>

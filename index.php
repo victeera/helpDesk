@@ -10,7 +10,7 @@ require 'conexao.php';
 <div style="display: flex; justify-content: center;">
     <div style="margin-top: 20px; display: flex; justify-content: space-between; width: 100%; max-width: 860px;">
     <div><a href="">Novo Chamado</a> &nbsp;&nbsp;&nbsp;  <a href="">Histórico de Chamados</a></div>
-    <div><a href="">Sair</a></div>
+    <div><a href="logout.php">Sair</a></div>
 </div>
 </div>
 
