@@ -70,7 +70,10 @@ require 'conexao.php';
 
     </tr>
     <?php
-    $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.setor, chamado.prioridade, chamado.descricao, chamado.status, chamado.responsavel, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante WHERE chamado.status = 'em aberto'");
+    $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.prioridade, 
+chamado.descricao, chamado.status, chamado.responsavel, (SELECT setor_usuario.descricao FROM setor_usuario WHERE usuario.setor_usuario = setor_usuario.id_setor_usuario) 
+as setor, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante 
+WHERE chamado.status = 'em aberto';");
 
     if($sql->rowCount() > 0){
         foreach($sql->fetchAll() as $chamado){
