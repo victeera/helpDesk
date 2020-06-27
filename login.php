@@ -36,6 +36,6 @@ require 'conexao.php';
     <input type="text" name="email"><br><br>
     Senha:<br>
     <input type="password" name="senha"><br><br>
-    <input type="submit" value="Entrar">
+    <input type="submit" value="Entrar">&nbsp;&nbsp;&nbsp;<a href="cad_usuario.php">Cadastrar-se</a>
 
 </form>

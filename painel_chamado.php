@@ -71,7 +71,7 @@ require 'conexao.php';
     </tr>
     <?php
     $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.setor, chamado.prioridade, chamado.descricao, chamado.status, chamado.responsavel, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante WHERE chamado.status = 'em aberto'");
-    echo $_SESSION['nome'];
+
     if($sql->rowCount() > 0){
         foreach($sql->fetchAll() as $chamado){
             echo '<tr>';
@@ -82,7 +82,8 @@ require 'conexao.php';
             echo '<th>'.$chamado['descricao'].'</th>';
             echo '<th>'.$chamado['status'].'</th>';
             if($chamado['responsavel'] <= 0)
-                echo '<th><a href= "pegar.php?id=' . base64_encode($chamado['id_chamado']) . '">Pegar</a></th>';
+                //echo '<th><a href= "pegar.php?id=' . base64_encode($chamado['id_chamado']) . '">Pegar</a></th>';
+                echo '<th><a href= "visualiza_chamado.php?id=' . base64_encode($chamado['id_chamado']) . '">Visualizar</a></th>';
 
             echo '</tr>';
         }

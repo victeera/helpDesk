@@ -8,7 +8,7 @@ if(isset($_POST['email']) && empty($_POST['email']) == false) {
         $email = addslashes($_POST['email']);
         $senha = md5(addslashes($_POST['senha']));
         $c_senha = md5(addslashes($_POST['c_senha']));
-        $tipo_usuario = addslashes($_POST['tipo_usuario']);
+        $tipo_usuario = addslashes($_POST['tipos_usuario']);
         $setor_usuario = addslashes($_POST['setor_usuario']);
 
         $select = $pdo->query("SELECT * FROM usuario WHERE email = '$email' AND senha = '$senha'");
@@ -42,7 +42,7 @@ if(isset($_POST['email']) && empty($_POST['email']) == false) {
     Confirmação da senha:<br>
     <input type="password" name="c_senha"><br><br>
     Tipo de Usuário:<br>
-    <select name="tipo_usuario">
+    <select name="tipos_usuario">
         <option> </option>
         <option value="1">Administrador</option>
         <option value="2">Técnico</option>
@@ -51,16 +51,16 @@ if(isset($_POST['email']) && empty($_POST['email']) == false) {
     Setor:<br>
     <select name="setor_usuario">
         <option> </option>
-        <option value="Ambiental">Ambiental</option>
-        <option value="Comercial">Comercial</option>
-        <option value="Compras">Compras</option>
-        <option value="Contabilidade">Contabilidade</option>
-        <option value="Diretoria">Diretoria</option>
-        <option value="Estoque">Estoque</option>
-        <option value="Financeiro">Financeiro</option>
-        <option value="Fiscal">Fiscal</option>
-        <option value="Rh">RH</option>
-        <option value="T.I">T.I</option>
+        <option value="1">Ambiental</option>
+        <option value="2">Comercial</option>
+        <option value="3">Compras</option>
+        <option value="4">Contabilidade</option>
+        <option value="5">Diretoria</option>
+        <option value="6">Estoque</option>
+        <option value="7">Financeiro</option>
+        <option value="8">Fiscal</option>
+        <option value="9">RH</option>
+        <option value="10">T.I</option>
 
 
 
