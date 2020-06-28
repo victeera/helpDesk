@@ -24,7 +24,7 @@ require 'conexao.php';
 <br><br><br>
 
 <div style="display: flex; justify-content: center;">
-<h3>Painel de Chamados</h3>
+<h3>Chamados Abertos</h3>
 </div>
 <br><br><br>
 
@@ -41,7 +41,7 @@ require 'conexao.php';
     </tr>
     <?php
     if(isset ($_SESSION['id']) && empty($_SESSION['id']) == false) {
-    $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.prioridade, chamado.descricao, chamado.status, chamado.responsavel, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante WHERE (solicitante='$_SESSION[id]' AND chamado.status='em aberto') OR (solicitante='$_SESSION[id]' AND chamado.status='em processo')");
+    $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, prioridade.nome as prioridade, chamado.descricao, status.nome as status, chamado.responsavel, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante INNER JOIN prioridade ON id_prioridade = prioridade_id INNER JOIN status ON id_status = status_id WHERE (solicitante='$_SESSION[id]' AND chamado.status_id='1') OR (solicitante='$_SESSION[id]' AND chamado.status_id='2')");
     if($sql->rowCount() > 0){
         foreach($sql->fetchAll() as $chamado){
             echo '<tr>';

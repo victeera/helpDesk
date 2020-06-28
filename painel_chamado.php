@@ -36,7 +36,7 @@ require 'conexao.php';
 
             if($_SESSION['tipo_usuario'] == 1) {
 
-            $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.setor, chamado.prioridade, chamado.descricao, chamado.status, chamado.responsavel, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante WHERE responsavel='$_SESSION[id]' AND status='em processo'");
+            $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.setor, prioridade.nome as prioridade, chamado.descricao, status.nome as status FROM chamado INNER JOIN usuario ON id_usuario = solicitante INNER JOIN prioridade ON id_prioridade = prioridade_id INNER JOIN status ON id_status = status_id WHERE responsavel='$_SESSION[id]' AND chamado.status_id='2'");
 
             if ($sql->rowCount() > 0) {
                 foreach ($sql->fetchAll() as $chamado) {
@@ -66,7 +66,7 @@ require 'conexao.php';
 
 </table>
 
-<h3>Painel de Chamados</h3>
+<h3>Solicitações para Atender</h3>
 <table border="0" width="100%">
     <tr>
         <th>Seqêncial</th>
@@ -79,12 +79,9 @@ require 'conexao.php';
 
     </tr>
     <?php
-    // passar por get o codigo do setor $setor = 10;
+
     $setor = $_SESSION['setor'];
-    $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.prioridade, 
-chamado.descricao, chamado.status, chamado.responsavel, (SELECT setores.descricao FROM setores WHERE usuario.setor_usuario = setores.id_setor) 
-as setor, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante 
-WHERE (chamado.status = 'em aberto' AND chamado.setor_destino = ' $setor') OR (chamado.status = 'em processo' AND chamado.setor_destino = ' $setor')");
+    $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, prioridade.nome as prioridade, chamado.descricao, status.nome as status, chamado.responsavel, (SELECT setores.descricao FROM setores WHERE usuario.setor_usuario = setores.id_setor) as setor, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.responsavel) as tecnico FROM chamado INNER JOIN usuario ON id_usuario = solicitante INNER JOIN prioridade ON id_prioridade = prioridade_id INNER JOIN status ON id_status = status_id WHERE (status_id = '1' AND chamado.setor = '$setor')");
 
 
     if($sql->rowCount() > 0){

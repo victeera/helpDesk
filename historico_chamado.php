@@ -41,7 +41,7 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
     <?php
     if(isset ($_SESSION['id']) && empty($_SESSION['id']) == false) {
         $id = $_SESSION['id'];
-        $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.prioridade, chamado.descricao, chamado.status, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.solicitante) as tecnico FROM chamado INNER JOIN usuario ON solicitante = id_usuario WHERE (status = 'finalizado' && solicitante = '$id' )");
+        $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, prioridade.nome as prioridade, chamado.descricao, status.nome, (SELECT usuario.nome FROM usuario WHERE usuario.id_usuario = chamado.solicitante) as tecnico FROM chamado INNER JOIN usuario ON solicitante = id_usuario INNER JOIN prioridade ON id_prioridade = prioridade_id INNER JOIN status ON id_status = status_id WHERE (status_id = '3' && solicitante = '$id' )");
              if($sql->rowCount() > 0){
             foreach($sql->fetchAll() as $chamado){
                 echo '<tr>';
