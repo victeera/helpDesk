@@ -9,7 +9,7 @@ require 'conexao.php';
 
 <div style="display: flex; justify-content: center;">
     <div style="margin-top: 20px; display: flex; justify-content: space-between; width: 100%; max-width: 860px;">
-        <div><a href="novo_chamado.php"></a> &nbsp;&nbsp;&nbsp;  <a href="">Histórico de Chamados</a></div>
+        <div><a href="index.php">Inicio</a></div>
         <div><a href="logout.php">Sair</a></div>
     </div>
 </div>
@@ -104,7 +104,7 @@ WHERE (chamado.status = 'em aberto' AND chamado.setor_destino = ' $setor') OR (c
         }
 
     }
-
+    echo "<meta HTTP-EQUIV='refresh' CONTENT='10;URL=painel_chamado.php'>";
     ?>
 
 </table>

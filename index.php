@@ -11,7 +11,7 @@ require 'conexao.php';
         <div><a href="novo_chamado.php">Novo Chamado</a> &nbsp;&nbsp;&nbsp; <?php
                 $tipo_usuario = $_SESSION['tipo_usuario'];
                 if ( $tipo_usuario == 1 or  $tipo_usuario == 2) {
-                    echo '<a href="painel_chamado.php">Painel de Chamados</a>';
+                    echo '<a href="painel_chamado.php">Atender Solicitações</a>';
         }
 
         ?>
@@ -52,7 +52,7 @@ require 'conexao.php';
             echo '<th>'.$chamado['status'].'</th>';
             echo '<th>'.$chamado['tecnico'].'</th>';
             if($chamado['responsavel'] <= 0) {
-                echo '<td><a href= "editar.php?id=' . $chamado['id_chamado'] . '">Editar</a></td>';
+                echo '<td><a href= "editar.php?id=' . $chamado['id_chamado'] . '">Editar</a> - <a href= "excluir.php?id=' . $chamado['id_chamado'] . '">Excluir</a></td>';
             }
                 echo '</tr>';
         }
