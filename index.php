@@ -6,16 +6,27 @@ require 'conexao.php';
 
 ?>
 
-
 <div style="display: flex; justify-content: center;">
     <div style="margin-top: 20px; display: flex; justify-content: space-between; width: 100%; max-width: 860px;">
-    <div><a href="">Novo Chamado</a> &nbsp;&nbsp;&nbsp;  <a href="">Histórico de Chamados</a></div>
-    <div><a href="logout.php">Sair</a></div>
-</div>
+        <div><a href="novo_chamado.php">Novo Chamado</a> &nbsp;&nbsp;&nbsp; <?php
+                $tipo_usuario = $_SESSION['tipo_usuario'];
+                if ( $tipo_usuario == 1 or  $tipo_usuario == 2) {
+                    echo '<a href="painel_chamado.php">Painel de Chamados</a>';
+        }
+
+        ?>
+            &nbsp;&nbsp;&nbsp;  <a href="historico_chamado.php">Histórico de Chamados</a>
+        </div>
+        <div><a href="logout.php">Sair</a></div>
+    </div>
 </div>
 
-<br>
+<br><br><br>
+
+<div style="display: flex; justify-content: center;">
 <h3>Painel de Chamados</h3>
+</div>
+<br><br><br>
 
 <table border="0" width="100%">
     <tr>

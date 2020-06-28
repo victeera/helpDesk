@@ -15,7 +15,7 @@ if(isset($_POST['email']) && empty($_POST['email']) == false) {
 
         if($select->rowCount() == false){
             if($senha == $c_senha) {
-                $pdo->query("INSERT INTO usuario (nome, email, senha, tipo_usuario, setor_usuario) VALUES ('$nome', '$email', '$senha', '$tipo_usuario', '$setor_usuario') ");
+                $pdo->query("INSERT INTO usuario (nome, email, senha, tipo_usuario, setor_usuario) VALUES ('$nome', '$email', '$senha', '$tipo_usuario', '$setor_usuario')");
                 header("Location: login.php");
             }else{
                 echo "As senhas são diferentes<br>";

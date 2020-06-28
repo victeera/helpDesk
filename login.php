@@ -12,14 +12,11 @@ require 'conexao.php';
         if ( $sql->rowCount() > 0) {
             $dado = $sql->fetch();
             $_SESSION['id'] = $dado['id_usuario'];
+            $_SESSION['nome'] = $dado['nome'];
             $_SESSION['tipo_usuario'] = $dado['tipo_usuario'];
+            $_SESSION['setor'] = $dado['setor_usuario'];
 
-            if ($dado['tipo_usuario'] == 1) {
-                header("Location: painel_chamado.php");
-            }
-            if ($dado['tipo_usuario'] == 3) {
-                header("Location: index.php");
-            }
+            header("Location: index.php");
         }else{
             echo "E-mail ou senha incorretos";
         }
