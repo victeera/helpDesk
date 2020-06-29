@@ -36,7 +36,7 @@ require 'conexao.php';
 
             if($_SESSION['tipo_usuario'] == 1) {
 
-            $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, chamado.setor, prioridade.nome as prioridade, chamado.descricao, status.nome as status FROM chamado INNER JOIN usuario ON id_usuario = solicitante INNER JOIN prioridade ON id_prioridade = prioridade_id INNER JOIN status ON id_status = status_id WHERE responsavel='$_SESSION[id]' AND chamado.status_id='2'");
+            $sql = $pdo->query("SELECT chamado.id_chamado, usuario.nome as solicitante, (SELECT setores.descricao FROM setores WHERE usuario.setor_usuario = setores.id_setor) as setor, prioridade.nome as prioridade, chamado.descricao, status.nome as status FROM chamado INNER JOIN usuario ON id_usuario = solicitante INNER JOIN prioridade ON id_prioridade = prioridade_id INNER JOIN status ON id_status = status_id WHERE responsavel='$_SESSION[id]' AND chamado.status_id='2'");
 
             if ($sql->rowCount() > 0) {
                 foreach ($sql->fetchAll() as $chamado) {
@@ -95,7 +95,7 @@ require 'conexao.php';
             echo '<th>'.$chamado['status'].'</th>';
             if($chamado['tecnico'] <= 0)
                 //echo '<th><a href= "pegar.php?id=' . base64_encode($chamado['id_chamado']) . '">Pegar</a></th>';
-                echo '<th><a href= "visualiza_chamado.php?id=' . base64_encode($chamado['id_chamado']) . '">Visualizar</a></th>';
+                echo '<th><a href= "visualiza_chamado.php?id='.base64_encode($chamado['id_chamado']).'">Visualizar</a></th>';
 
             echo '</tr>';
         }
