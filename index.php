@@ -8,18 +8,19 @@ require 'conexao.php';
 
 <div style="display: flex; justify-content: center;">
     <div style="margin-top: 20px; display: flex; justify-content: space-between; width: 100%; max-width: 860px;">
-        <div><a href="novo_chamado.php">Novo Chamado</a> &nbsp;&nbsp;&nbsp; <?php
-                $tipo_usuario = $_SESSION['tipo_usuario'];
-                if ( $tipo_usuario == 1 or  $tipo_usuario == 2) {
-                    echo '<a href="painel_chamado.php">Atender Solicitações</a>';
-        }
+        <div><a href="index.php">Inicio</a> &nbsp;&nbsp;&nbsp;  <a href="novo_chamado.php">Novo Chamado</a> &nbsp;&nbsp;&nbsp; <?php
+            $tipo_usuario = $_SESSION['tipo_usuario'];
+            if ( $tipo_usuario == 1 or  $tipo_usuario == 2) {
+                echo '<a href="painel_chamado.php">Atender Solicitações</a>';
+            }
 
-        ?>
+            ?>
             &nbsp;&nbsp;&nbsp;  <a href="historico_chamado.php">Histórico de Chamados</a>
         </div>
         <div><a href="logout.php">Sair</a></div>
     </div>
 </div>
+
 
 <br><br><br>
 
@@ -52,7 +53,7 @@ require 'conexao.php';
             echo '<th>'.$chamado['status'].'</th>';
             echo '<th>'.$chamado['tecnico'].'</th>';
             if($chamado['responsavel'] <= 0) {
-                echo '<td><a href= "editar.php?id=' . $chamado['id_chamado'] . '">Editar</a> - <a href= "excluir.php?id=' . $chamado['id_chamado'] . '">Excluir</a></td>';
+                echo '<td><a href= "editar.php?id=' . base64_encode($chamado['id_chamado']) . '">Editar</a> - <a href= "excluir.php?id=' .base64_encode($chamado['id_chamado']) . '">Excluir</a></td>';
             }
                 echo '</tr>';
         }

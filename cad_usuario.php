@@ -45,7 +45,6 @@ if(isset($_POST['email']) && empty($_POST['email']) == false) {
     <select name="tipos_usuario">
         <option> </option>
         <option value="1">Administrador</option>
-        <option value="2">Técnico</option>
         <option value="3">Padrão</option>
     </select><br><br>
     Setor:<br>
