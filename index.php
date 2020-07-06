@@ -53,7 +53,7 @@ require 'conexao.php';
             echo '<th>'.$chamado['status'].'</th>';
             echo '<th>'.$chamado['tecnico'].'</th>';
             if($chamado['responsavel'] <= 0) {
-                echo '<td><a href= "editar.php?id=' . base64_encode($chamado['id_chamado']) . '">Editar</a> - <a href= "excluir.php?id=' .base64_encode($chamado['id_chamado']) . '">Excluir</a></td>';
+                echo '<td><a href= "excluir.php?id=' .base64_encode($chamado['id_chamado']) . '">Excluir</a></td>';
             }
                 echo '</tr>';
         }
